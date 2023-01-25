@@ -1,8 +1,9 @@
-import { FC } from "react";
+import React, { FC } from "react";
 import { Button } from "@mui/material";
 import * as yup from "yup";
 import { Formik, Form, FormikHelpers } from "formik";
-import { Input } from "./Input";
+import { Input } from "../Input";
+import { ITask } from "./Task";
 
 const validationSchema = yup.object().shape({
   name: yup.string().label("Task name").min(5).max(20).required(),
@@ -14,24 +15,29 @@ const validationSchema = yup.object().shape({
     .required(),
 });
 
-type FormikSubmitHandler = (
-  values: { name: string; description: string },
+export type FormikSubmitHandler = (
+  values: Pick<ITask, "name" | "description">,
   formikHelpers: FormikHelpers<{ name: string; description: string }>
 ) => void | (Promise<any> & Function);
 
-export const CreateTaskForm: FC<{
-  onTaskCreate: FormikSubmitHandler;
-}> = ({ onTaskCreate }) => (
+export const TaskForm: FC<{
+  handleSubmit: FormikSubmitHandler;
+  submitText?: string;
+  initialValues?: ITask;
+}> = ({ handleSubmit, submitText = "Create", initialValues }) => (
   <Formik
-    initialValues={{ name: "", description: "" }}
-    onSubmit={onTaskCreate}
+    initialValues={{
+      name: initialValues?.name || "",
+      description: initialValues?.description || "",
+    }}
+    onSubmit={handleSubmit}
     validationSchema={validationSchema}
   >
     <Form className="main-form">
-      <Input name="name" label="New task name" />
+      <Input name="name" label="Task name" />
       <Input name="description" label="Task description" multiline={true} />
       <Button variant="contained" type="submit">
-        Create
+        {submitText}
       </Button>
     </Form>
   </Formik>

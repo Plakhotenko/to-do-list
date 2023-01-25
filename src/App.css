@@ -57,3 +57,13 @@ body:before {
 .line-through {
   text-decoration: line-through;
 }
+.main-modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modal-close-button {
+  position: absolute !important;
+  top: 8px;
+  right: 8px;
+}

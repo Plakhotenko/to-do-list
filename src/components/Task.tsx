@@ -1,4 +1,4 @@
-import { FC, MouseEventHandler } from "react";
+import React, { FC, MouseEventHandler } from "react";
 import {
   Card,
   CardContent,
@@ -8,6 +8,7 @@ import {
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import CheckIcon from "@mui/icons-material/Check";
+import EditIcon from "@mui/icons-material/Edit";
 
 export interface ITask {
   id: string;
@@ -20,10 +21,12 @@ export const Task: FC<{
   task: ITask;
   handleDelete: MouseEventHandler;
   handleComplete: MouseEventHandler;
+  handleEdit: MouseEventHandler;
 }> = ({
   task: { name, description, isComplete },
   handleDelete,
   handleComplete,
+  handleEdit,
 }) => {
   return (
     <Card>
@@ -47,6 +50,14 @@ export const Task: FC<{
           onClick={handleDelete}
         >
           Delete
+        </Button>
+        <Button
+          variant="outlined"
+          startIcon={<EditIcon />}
+          disabled={isComplete}
+          onClick={handleEdit}
+        >
+          Edit
         </Button>
         <Button
           variant="contained"
