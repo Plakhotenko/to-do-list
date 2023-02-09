@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { Button } from "@mui/material";
 import * as yup from "yup";
 import { Formik, Form, FormikHelpers } from "formik";
-import { Input } from "../Input";
+import { Input } from "./Input";
 import { ITask } from "./Task";
 
 const validationSchema = yup.object().shape({
