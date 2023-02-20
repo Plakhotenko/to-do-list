@@ -2,16 +2,9 @@ import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom/extend-expect';
-import * as crypto from 'crypto';
 
 import App from './App';
 import {ITask} from "./components/Task";
-
-Object.defineProperty(globalThis, 'crypto', {
-  value: {
-    randomUUID: () => crypto.randomUUID()
-  }
-});
 
 const task = {
   id: '1',
