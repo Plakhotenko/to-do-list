@@ -29,7 +29,7 @@ export const UpdateTaskModal: FC<{
           <CloseIcon />
         </IconButton>
         <Typography variant="h6" component="h2" mb={2}>
-          Text in a modal
+          Edit task
         </Typography>
         <TaskForm
           handleSubmit={handleSubmit}
